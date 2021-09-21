@@ -1,14 +1,6 @@
 number = 5 
+digit = -4.5435 
+word = "568" 
 
-digit = -4.54356876 
-word = "Результат:" 
-boolean = True 
-
-str_num = '5' 
-
-print(word + str(number + int(str_num)))
-
-del number
-
-number = 7
-print("Результат:", number)
+res = number + digit + int(word)
+print("Результат:", res)
