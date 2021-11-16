@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAmedev Canvas Workshop</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }  
+        canvas{
+            background-color: #eee;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="480" height="320">
+
+    </canvas>
+
+    <script>
+        let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext("2d");
+        let ballRadius = 10;
+        let x = canvas.width/2;
+        let y = canvas.height-30;
+        let dx = 2;
+        let dy = -2;
+        let paddH = 10;
+        let paddW = 75;
+        let paddX = (canvas.width-paddW)/2;
+        let rightPress  =false;
+        let leftPress = false;
+
+        document.addEventListener("keydown", keyDownHander, false);
+        document.addEventListener("keyup", keyUpHander, false);
+
+        function keyDownHander(e) {
+            if (e.code  =="ArrowRight") {
+                rightPress = true;
+            }
+            else if(e.code  =="ArrowLeft"){
+                leftPress = true;
+            }
+        }
+
+        function keyUpHander(e) {
+            if (e.code  =="ArrowRight") {
+                rightPress = false;
+            }
+            else if(e.code  =="ArrowLeft"){
+                leftPress = false;
+            }
+        }
+
+        function drawBall() {
+            ctx.beginPath();
+            ctx.arc(x,y,ballRadius,0, Math.PI*2);
+            ctx.fillStyle = "#0095DD";
+            ctx.fill();
+            ctx.closePath();
+        }
+        
+        function draw() {
+            ctx.clearRect(0,0, canvas.width, canvas.height);
+            drawBall();
+
+            if (x+dx > canvas.width-ballRadius || x + dx < ballRadius) {
+                dx = -dx;
+            }
+            if (y+dy > canvas.width-ballRadius || y + dy < ballRadius) {
+                dy = -dy;
+            }
+
+            x += dx;
+            y += dy; 
+
+            
+        }
+        
+        setInterval(draw, 10);
+
+        // ctx.beginPath();
+        // ctx.rect(240,160,20,0, Math.PI*2, false);
+        // ctx.fillStyle = "green";
+        // ctx.fill();
+        // ctx.closePath();
+
+        // ctx.beginPath();
+        // ctx.rect(160,10,100,40);
+        // ctx.strokeStyle = "rgba(0,0,255,0.5)";
+        // ctx.fill();
+        // ctx.closePath();
+
+        </script>
+</body>
+</html>
