@@ -1,7 +1,8 @@
 const MenuBtn = document.querySelector('.menu');
-const log = document.querySelector('.login');
+const btn = document.querySelector('.post_btn');
+const pop = document.querySelector('#popup');
+let check = false;
 let menuOpn = false;
-let rec = false;
 MenuBtn.addEventListener('click',() =>{
   if(!menuOpn){
     MenuBtn.classList.toggle('_open');
@@ -11,12 +12,10 @@ MenuBtn.addEventListener('click',() =>{
     menuOpn = false;
   }
 })
-log.addEventListener('click', () =>{
-  if(!rec){
-    log.classList.toggle('log_clk');
-    rec = true;
-  } else{
-    log.classList.remove('log_clk');
-    rec = false;
+
+btn.addEventListener('click',() =>{
+  if(!check){
+    popup.classList.toggle('logged');
+    menuOpn = true;
   }
 })
