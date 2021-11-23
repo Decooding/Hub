@@ -18,7 +18,7 @@
     </style>
 </head>
 <body>
-    <canvas id="myCanvas" width="480" height="320">
+    <canvas id="myCanvas" width="500" height="420">
 
     </canvas>
 
@@ -28,8 +28,8 @@
         let ballRadius = 10;
         let x = canvas.width/2;
         let y = canvas.height-30;
-        let dx = 1;
-        let dy = -1;
+        let dx = 2;
+        let dy = -2;
         let paddH = 10;
         let paddW = 75;
         let paddX = (canvas.width-paddW)/2;
@@ -77,7 +77,7 @@
         }
 
         function mouseMoveHandler(e) {
-          let relativeX = e.clientX - canvas.brickoffsetLeft;
+          let relativeX = e.clientX - canvas.offsetLeft;
           if (relativeX > 0 && relativeX < canvas.width) {
             paddX = relativeX - paddW/2;
           }
@@ -94,7 +94,7 @@
                   score++;
                   if (score == brickRowCount*brickColumCount) {
                     alert("You win, Congrats!");
-                    document.reload();
+                    document.location.reload();
                   }
                 }
               }
@@ -157,7 +157,7 @@
             drawLives();
             collisionDetection();
 
-            if (x+dx < canvas.width-ballRadius || x + dx < ballRadius) {
+            if (x+dx > canvas.width-ballRadius || x + dx < ballRadius) {
                 dx = -dx;
             }
             if (y+dy < ballRadius) {
@@ -189,10 +189,9 @@
             }
             x += dx;
             y += dy;
-            requestAnimationFrame(draw);
         }
 
-        draw();
+        setInterval(draw,10);
         </script>
 </body>
 </html>
